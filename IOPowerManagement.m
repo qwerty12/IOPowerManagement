@@ -46,7 +46,7 @@ int main(int argc, char **argv)
     unsigned int kIOPMEvents[] = { kAESleep, kAEShutDown, kAERestart, kAEReallyLogOut };
     const char **poperatorIOPM = operatorIOPM;
     unsigned int *pkIOPMEvents = kIOPMEvents;
-    unsigned int *kPMEventPass;
+    unsigned int kPMEventPass;
     OSStatus ret               = noErr;
     unsigned long timeslic     = 0;
     FixedQueueUlong *queue     = FixedQueueUlong_new(CLOCKSIZE);
@@ -64,7 +64,7 @@ int main(int argc, char **argv)
         // use default
         //
         printf("Computer is waiting to %s\n", *poperatorIOPM);
-        *kPMEventPass = kIOPMEvents[0];
+        kPMEventPass = *pkIOPMEvents;
     }
     else
     {
@@ -82,7 +82,7 @@ int main(int argc, char **argv)
                 //
                 // sending IOPMEvent to system
                 //
-                kPMEventPass = pkIOPMEvents;
+                kPMEventPass = *pkIOPMEvents;
                 printf("Computer is waiting to %s\n", *poperatorIOPM);
                 break;
             }
@@ -129,7 +129,7 @@ int main(int argc, char **argv)
             
             if (timeslic > PREVENT_SLEEP_SLIC)  // no "=" included, for a more flexible/weak situation
             {
-                ret = TransportEventSystemCall(*kPMEventPass);
+                ret = TransportEventSystemCall(kPMEventPass);
                 if (ret == noErr)
                 {
                     printf("Computer is going to %s.\n", *poperatorIOPM);
