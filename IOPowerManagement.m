@@ -104,11 +104,11 @@ int main(int argc, char **argv)
             // Time is enough or there's battery charger plugged-in
             //
             releaseLock = false;
-            if (timeRemaining_seconds > 0)
+            /*if (timeRemaining_seconds > 0)
             {
                 printf("Battery time remaining is %d seconds\n", timeRemaining_seconds);
             }
-            printf("Battery percentage is %d\n", batPercentage);
+            printf("Battery percentage is %d\n", batPercentage);*/
             sleep(hookIntervalTime);
         }
         else
@@ -119,8 +119,8 @@ int main(int argc, char **argv)
             
             //altered 20161214
             FixedQueueUlong_forceEnqueue(queue, CFAbsoluteTimeGetCurrent());
-            puts("queue contents: \n");
-            FixedQueueUlong_printAll(queue);
+            /*puts("queue contents: \n");
+            FixedQueueUlong_printAll(queue);*/
             
             cntNotify++;
             

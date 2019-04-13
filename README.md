@@ -10,8 +10,6 @@ battery policy, I will explain this later.
 And also, as it's name, it will provide more powerful/flexible power management functions/policies as you like to control
 the system.
 
-Notice: Kext version still need to be refined due to my intention. I want to make this project in a more general situation.
-
 Since, I am too busy these days to finish assignments and my final exams will come soon, I may update my Github slow,
 but I can assure you that great things will happen, and when they happen… they will happen here.
 
@@ -35,35 +33,12 @@ Build the project by typing:
 cd IOPowerManagement/
 clang IOPowerManagement.m FixedQueueUlong.m -fobjc-arc -fmodules -mmacosx-version-min=10.6 -o IOPowerManagement
 ```
-Then place com.syscl.iopm.plist in /Library/LaunchDaemons/ by typing:
-```sh
-sudo cp -RX ./com.syscl.iopm.plist /Library/LaunchDaemons/
-```
 
 Installing both program and service for macOS by typing:
 ```sh
-sudo cp -RX ./IOPowerManagement /etc
+sudo cp -RX ./IOPowerManagement /usr/local/bin/
+sudo cp -RX ./com.syscl.iopm.plist /Library/LaunchDaemons/
 sudo launchctl load /Library/LaunchDaemons/com.syscl.iopm.plist
-```
-Reboot to enjoy your macOS/OS X :)
-
-
-
-For kext version, just place it under /Library/Extensions or /System/Library/Extensions by typing:
-```sh
-sudo cp -RX ./IOPowerDeploy.kext /Library/Extensions
-```
-or
-```sh
-sudo cp -RX ./IOPowerDeploy.kext /System/Library/Extensions
-```
-Then load kext by typing:
-```sh
-sudo kextload /Library/Extensions/IOPowerDeploy.kext
-```
-or
-```sh
-sudo kextload /System/Library/Extensions/IOPowerDeploy.kext
 ```
 
 Change Log
